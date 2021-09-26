@@ -5,8 +5,8 @@ from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 
-from api import api_router
-from config import settings, setup_logging
+from app.api import api_router
+from app.config import settings, setup_logging
 
 
 setup_logging(config=settings)

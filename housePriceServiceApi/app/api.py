@@ -3,7 +3,7 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-import schemas
+from app import schemas
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 from houseregression_model import __version__ as model_version
