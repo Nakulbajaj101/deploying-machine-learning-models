@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 # Package meta-data.
 NAME = 'tid-houseregression-model'
-DESCRIPTION = "Example regression model package from Train In Data."
+DESCRIPTION = "Example regression model package to train regression on house data"
 URL = "https://github.com/Nakulbajaj101/deploying-machine-learning-models"
 EMAIL = "bajaj.nakul@gmail.com"
 AUTHOR = "Nakul Bajaj"
