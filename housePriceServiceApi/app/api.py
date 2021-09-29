@@ -3,13 +3,13 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-from app import schemas
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 from houseregression_model import __version__ as model_version
 from houseregression_model.predict import make_predictions
 from loguru import logger
 
+from app import schemas
 
 api_router = APIRouter()
 __version__ = "0.0.1"
@@ -22,14 +22,12 @@ def health() -> dict:
     health = schemas.Health(
         name="House Model Prediction",
         api_version=__version__,
-        model_version=model_version
+        model_version=model_version,
     )
     return health.dict()
 
 
-@api_router.post("/predict",
-                 response_model=schemas.PredictionResults,
-                 status_code=200)
+@api_router.post("/predict", response_model=schemas.PredictionResults, status_code=200)
 async def predict(input_data: schemas.MultipleHouseDataInputs) -> Any:
     """Make a house prediction"""
 
@@ -40,8 +38,7 @@ async def predict(input_data: schemas.MultipleHouseDataInputs) -> Any:
 
     if results["errors"] != "":
         logger.warning(f"Prediction validation error: {results.get('errors')}")
-        raise HTTPException(status_code=400,
-                            detail=json.loads(results["errors"]))
+        raise HTTPException(status_code=400, detail=json.loads(results["errors"]))
 
     logger.info(f"Prediction results: {results.get('predictions')}")
 

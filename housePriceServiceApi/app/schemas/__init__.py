@@ -1,1 +1,1 @@
-from .schemaConfigs import Health, PredictionResults, MultipleHouseDataInputs
+from .schemaConfigs import Health, MultipleHouseDataInputs, PredictionResults

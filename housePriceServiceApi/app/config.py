@@ -42,8 +42,9 @@ class InterceptHandler(logging.Handler):
             frame = frame.f_back
             depth += 1
 
-        logger.opt(depth=depth, 
-                   exception=record.exc_info).log(level, record.getMessage())
+        logger.opt(depth=depth, exception=record.exc_info).log(
+            level, record.getMessage()
+        )
 
 
 def setup_logging(config: Settings) -> None:
@@ -52,9 +53,7 @@ def setup_logging(config: Settings) -> None:
     logging.getLogger().handlers = [InterceptHandler()]
     for logger_name in LOGGERS:
         logging_logger = logging.getLogger(logger_name)
-        logging_logger.handlers = [InterceptHandler(level=config
-                                                    .logging
-                                                    .LOGGING_LEVEL)]
+        logging_logger.handlers = [InterceptHandler(level=config.logging.LOGGING_LEVEL)]
     logger.configure(
         handlers=[{"sink": sys.stderr, "level": config.logging.LOGGING_LEVEL}]
     )
